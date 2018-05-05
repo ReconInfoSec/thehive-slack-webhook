@@ -1,3 +1,5 @@
+# https://github.com/ReconInfoSec/thehive-slack-webhook
+
 from __future__ import print_function
 import json
 import logging
