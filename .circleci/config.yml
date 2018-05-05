@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Deploy to S3
           branch: master
-          command: aws s3 cp Hive_to_Slack.zip s3://thehive-slack-webhook/ --delete --region us-east-1
+          command: aws s3 cp Hive_to_Slack.zip s3://thehive-slack-webhook/ --region us-east-1
 
 workflows:
   version: 2
