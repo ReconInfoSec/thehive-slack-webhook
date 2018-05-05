@@ -60,7 +60,7 @@ def process_event(event):
             fields.append(add_object("Description",description,False))
         else:
             description = "none"
-        
+
         if "status" in event['object']:
             status = event['object']['status']
             fields.append(add_object("Status",status,True))
@@ -105,7 +105,7 @@ def process_event(event):
         if not titleLink: # if we haven't set it based on object type
             titleLink = hiveURL
 
-        activity = "A " + str(objectType) + "has been" + operation + "."
+        activity = "A " + str(objectType) + " has been " + operation + "."
 
         attachments = [
                 {
