@@ -40,6 +40,9 @@ def process_event(event):
         elif event['objectType'] == "case_task":
             objectType = "Task"
             titleLink = caseURL + event['rootId'] + "/tasks/" + event['objectId']
+        elif event['objectType'] == "case_task_log":
+            objectType = "Task Log"
+            titleLink = caseURL + event['rootId'] + "/tasks/" + event['objectId']
         else:
             caseId = "none"
 
