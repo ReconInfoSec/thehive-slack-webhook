@@ -38,7 +38,8 @@ def process_event(event):
             objectType = "Case"
             caseId = event['object']['caseId']
             fields.append(add_object("Case #",caseId,True))
-            titleLink = caseURL + event['objectId'] + "/details"
+            caseLink = caseURL + event['objectId'] + "/details"
+            titleLink = caseLink
         elif event['objectType'] == "case_task":
             objectType = "Task"
             titleLink = caseURL + event['rootId'] + "/tasks/" + event['objectId']
@@ -71,12 +72,6 @@ def process_event(event):
             fields.append(add_object("Status",status,True))
         else:
             status = "none"
-
-        if "title" in event['object']:
-            title = event['object']['title']
-            fields.append(add_object("Title",title,True))
-        else:
-            title = "none"
 
         if "owner" in event['object']:
             owner = event['object']['owner']
@@ -112,6 +107,11 @@ def process_event(event):
 
         activity = "A " + str(objectType) + " has been " + operation + "."
 
+        if "title" in event['object']:
+            title = event['object']['title']
+        else:
+            title = activity
+
         attachments = [
                 {
                     "fallback": description,
@@ -133,6 +133,8 @@ def process_event(event):
 def send_to_slack(event,attachments):
 
     slack_message = {
+        'username': 'TheHive',
+        'icon_emoji': ':honeybee:',
         'channel': slackChannel,
         'attachments': attachments
     }
